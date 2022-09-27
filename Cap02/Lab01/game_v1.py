@@ -3,24 +3,30 @@
 from tkinter import *
 import random
 import time
-
+#variável  recebe qual nivel a pessoar quer jogar
 level = int(input("Qual nível você gostaria de jogar? 1/2/3/4/5 \n"))
 length = 500/level
+# o compr fica igual ao 500/por dado do nivel
 
-
+""" variável recebe uma tupla vazia chamada TK e título""" 
 root = Tk()
 root.title("Ping Pong")
 root.resizable(0,0)
 root.wm_attributes("-topmost", -1)
 
+#tupla
 canvas = Canvas(root, width=800, height=600, bd=0,highlightthickness=0)
 canvas.pack()
-
+#atualiza tupla
 root.update()
 
+
+#variavel inteira e boleana
 # Variável
 count = 0
 lost = False
+
+# def cria uma função com parametros? metodos
 
 class Bola:
     def __init__(self, canvas, Barra, color):
@@ -29,21 +35,24 @@ class Bola:
         self.id = canvas.create_oval(0, 0, 15, 15, fill=color)
         self.canvas.move(self.id, 245, 200)
 
+        
+#criou uma lista para o vetor x, horizontal , vai e volta?
         starts_x = [-3, -2, -1, 1, 2, 3]
         random.shuffle(starts_x)
-
+#nao sei o que é self. x começa em -3, pois é o número que está no index 0
         self.x = starts_x[0]
         self.y = -3
 
+#cria tupla?
         self.canvas_height = self.canvas.winfo_height()
         self.canvas_width = self.canvas.winfo_width()
 
-
+#cria uma função com parametro self
     def draw(self):
         self.canvas.move(self.id, self.x, self.y)
 
         pos = self.canvas.coords(self.id)
-
+# se posição 
         if pos[1] <= 0:
             self.y = 3
 
@@ -58,7 +67,7 @@ class Bola:
 
         self.Barra_pos = self.canvas.coords(self.Barra.id)
 
-
+#Se bola bate na barra, ganha mais um ponto. variavel count recebe mais um, cria um tupla vazia chamada score ou chama a função score?
         if pos[2] >= self.Barra_pos[0] and pos[0] <= self.Barra_pos[2]:
             if pos[3] >= self.Barra_pos[1] and pos[3] <= self.Barra_pos[3]:
                 self.y = -3
